@@ -26,43 +26,43 @@ Esta guía proporciona un análisis técnico profundo de la implementación, exp
 ```
 ┌─────────────────────────────────────────────┐
 │           API REST (Flask)                  │
-│  ┌────────┬────────┬────────┬────────────┐ │
-│  │ GET /  │GET/minar│POST/tx│GET/resolver│ │
-│  └───┬────┴────┬───┴───┬────┴──────┬─────┘ │
-└──────┼─────────┼───────┼───────────┼───────┘
+│  ┌────────┬────────┬────────┬────────────┐  │
+│  │ GET /  │GET/minar│POST/tx│GET/resolver│  │
+│  └───┬────┴────┬───┴───┬────┴──────┬─────┘  │
+└──────┼─────────┼───────┼───────────┼────────┘
        │         │       │           │
        ▼         ▼       ▼           ▼
 ┌─────────────────────────────────────────────┐
 │         Clase Blockchain                    │
-│  ┌──────────────────────────────────────┐  │
-│  │ - cadena: List[Bloque]               │  │
-│  │ - transacciones_actuales: List[Dict] │  │
-│  │ - nodos: Set[str]                    │  │
-│  │                                      │  │
-│  │ Métodos:                             │  │
-│  │ + nuevo_bloque()                     │  │
-│  │ + nueva_transaccion()                │  │
-│  │ + proof_of_work()                    │  │
-│  │ + validar_cadena()                   │  │
-│  │ + resolver_conflictos()              │  │
-│  └──────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────┐   │
+│  │ - cadena: List[Bloque]               │   │
+│  │ - transacciones_actuales: List[Dict] │   │
+│  │ - nodos: Set[str]                    │   │
+│  │                                      │   │
+│  │ Métodos:                             │   │
+│  │ + nuevo_bloque()                     │   │
+│  │ + nueva_transaccion()                │   │
+│  │ + proof_of_work()                    │   │
+│  │ + validar_cadena()                   │   │
+│  │ + resolver_conflictos()              │   │
+│  └──────────────────────────────────────┘   │
 └─────────────────┬───────────────────────────┘
                   │
                   │ contiene
                   ▼
 ┌─────────────────────────────────────────────┐
 │            Clase Bloque                     │
-│  ┌──────────────────────────────────────┐  │
-│  │ - indice: int                        │  │
-│  │ - timestamp: float                   │  │
-│  │ - transacciones: List[Dict]          │  │
-│  │ - prueba: int                        │  │
-│  │ - hash_previo: str                   │  │
-│  │                                      │  │
-│  │ Métodos:                             │  │
-│  │ + calcular_hash()                    │  │
-│  │ + to_dict()                          │  │
-│  └──────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────┐   │
+│  │ - indice: int                        │   │
+│  │ - timestamp: float                   │   │
+│  │ - transacciones: List[Dict]          │   │
+│  │ - prueba: int                        │   │
+│  │ - hash_previo: str                   │   │
+│  │                                      │   │
+│  │ Métodos:                             │   │
+│  │ + calcular_hash()                    │   │
+│  │ + to_dict()                          │   │
+│  └──────────────────────────────────────┘   │
 └─────────────────────────────────────────────┘
 ```
 
@@ -899,9 +899,9 @@ def consenso():
 ### Flujo 1: Crear y Minar Transacción
 
 ```
-┌──────┐          ┌────────────┐          ┌───────────┐
-│Client│          │   Flask    │          │Blockchain │
-└──┬───┘          └─────┬──────┘          └─────┬─────┘
+┌──────┐          ┌────────────┐          ┌────────────┐
+│Client│          │   Flask    │          │ Blockchain │
+└──┬───┘          └─────┬──────┘          └─────┬──────┘
    │                    │                       │
    │  POST /transacciones/nueva                 │
    │───────────────────>│                       │
@@ -933,9 +933,9 @@ def consenso():
 ### Flujo 2: Consenso Distribuido
 
 ```
-┌──────┐     ┌─────┐     ┌─────┐     ┌─────┐
-│Nodo A│     │Nodo B│     │Nodo C│     │Nodo D│
-└──┬───┘     └──┬──┘     └──┬──┘     └──┬──┘
+┌──────┐     ┌──────┐    ┌──────┐    ┌──────┐
+│Nodo A│     │Nodo B│    │Nodo C│    │Nodo D│
+└──┬───┘     └──┬───┘    └──┬───┘    └──┬───┘
    │            │           │           │
    │  [Mina bloque 4]       │           │
    │<─          │           │           │
@@ -1195,29 +1195,29 @@ def nueva_transaccion(self, emisor, receptor, cantidad):
 
 ## Glosario Técnico
 
-**Blockchain**: Estructura de datos encadenada criptográficamente donde cada bloque contiene el hash del anterior.
+**- Blockchain**: Estructura de datos encadenada criptográficamente donde cada bloque contiene el hash del anterior.
 
-**Hash**: Función criptográfica unidireccional que convierte datos de cualquier tamaño en una cadena de longitud fija.
+**- Hash**: Función criptográfica unidireccional que convierte datos de cualquier tamaño en una cadena de longitud fija.
 
-**Nonce**: Number used once. En PoW, el número que se busca para satisfacer la condición de dificultad.
+**- once**: Number used once. En PoW, el número que se busca para satisfacer la condición de dificultad.
 
-**Proof of Work**: Algoritmo de consenso que requiere trabajo computacional demostrable para crear bloques válidos.
+**- Proof of Work**: Algoritmo de consenso que requiere trabajo computacional demostrable para crear bloques válidos.
 
-**Consenso**: Mecanismo por el cual los nodos de una red distribuida acuerdan el estado del sistema.
+**- Consenso**: Mecanismo por el cual los nodos de una red distribuida acuerdan el estado del sistema.
 
-**Fork**: Bifurcación en la blockchain cuando dos bloques diferentes se minan simultáneamente.
+**- Fork**: Bifurcación en la blockchain cuando dos bloques diferentes se minan simultáneamente.
 
-**Mempool**: Pool de transacciones pendientes que esperan ser confirmadas en un bloque.
+**- Mempool**: Pool de transacciones pendientes que esperan ser confirmadas en un bloque.
 
-**Bloque Génesis**: Primer bloque de una blockchain, creado manualmente.
+**- Bloque Génesis**: Primer bloque de una blockchain, creado manualmente.
 
-**Inmutabilidad**: Propiedad por la cual los datos en la blockchain no pueden ser modificados sin recalcular todos los bloques subsiguientes.
+**- Inmutabilidad**: Propiedad por la cual los datos en la blockchain no pueden ser modificados sin recalcular todos los bloques subsiguientes.
 
-**Distributed Ledger**: Libro contable distribuido entre múltiples nodos sin autoridad central.
+**- Distributed Ledger**: Libro contable distribuido entre múltiples nodos sin autoridad central.
 
-**Double Spend**: Intento de gastar los mismos fondos dos veces. Prevenido por la blockchain.
+**- Double Spend**: Intento de gastar los mismos fondos dos veces. Prevenido por la blockchain.
 
-**51% Attack**: Ataque donde una entidad controla más del 50% del poder computacional de la red.
+**- 51% Attack**: Ataque donde una entidad controla más del 50% del poder computacional de la red.
 
 ---
 
