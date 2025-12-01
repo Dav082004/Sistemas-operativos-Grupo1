@@ -450,38 +450,3 @@ Este es un proyecto **educativo**. No debe usarse en producción porque:
 4. **Smart Contracts**: Añadir lógica programable
 5. **Wallet**: Crear interfaz de billetera
 6. **Explorer**: Crear explorador web de bloques
-
----
-
-## Referencias
-
-- **Bitcoin Whitepaper**: https://bitcoin.org/bitcoin.pdf
-- **Blockchain Demo Visual**: https://andersbrownworth.com/blockchain/
-- **Documentación Flask**: https://flask.palletsprojects.com/
-- **SHA-256**: https://en.wikipedia.org/wiki/SHA-2
-
----
-
-## Autor y Licencia
-
-**Proyecto**: Blockchain Educativo con Python  
-**Propósito**: Sistemas Operativos - Proyecto Final  
-**Licencia**: Código abierto para fines educativos
-
----
-
-## Conclusión
-
-Este proyecto demuestra de manera práctica y funcional cómo se implementa una blockchain desde cero, cubriendo todos los componentes esenciales:
-
-- Estructura de bloques con hash SHA-256
-- Algoritmo Proof of Work
-- Consenso por cadena más larga
-- Red distribuida con múltiples nodos
-- API REST para interacción
-
-Es ideal para aprender los fundamentos de blockchain de manera práctica, con un enfoque educativo mediante el juego interactivo incluido.
-
----
-
-Última actualización: Noviembre 2025
